@@ -10,7 +10,7 @@ Store your vectors with the rest of your data. Supports:
 
 Plus [ACID](https://en.wikipedia.org/wiki/ACID) compliance, point-in-time recovery, JOINs, and all of the other [great features](https://www.postgresql.org/about/) of Postgres
 
-[![Build Status](https://github.com/pgvector/pgvector/workflows/build/badge.svg?branch=master)](https://github.com/pgvector/pgvector/actions)
+[![Build Status](https://github.com/pgvector/pgvector/actions/workflows/build.yml/badge.svg)](https://github.com/pgvector/pgvector/actions)
 
 ## Installation
 
@@ -379,7 +379,7 @@ Language | Libraries / Examples
 --- | ---
 C | [pgvector-c](https://github.com/pgvector/pgvector-c)
 C++ | [pgvector-cpp](https://github.com/pgvector/pgvector-cpp)
-C# | [pgvector-dotnet](https://github.com/pgvector/pgvector-dotnet)
+C#, F#, Visual Basic | [pgvector-dotnet](https://github.com/pgvector/pgvector-dotnet)
 Crystal | [pgvector-crystal](https://github.com/pgvector/pgvector-crystal)
 Dart | [pgvector-dart](https://github.com/pgvector/pgvector-dart)
 Elixir | [pgvector-elixir](https://github.com/pgvector/pgvector-elixir)
@@ -388,8 +388,10 @@ Haskell | [pgvector-haskell](https://github.com/pgvector/pgvector-haskell)
 Java, Kotlin, Groovy, Scala | [pgvector-java](https://github.com/pgvector/pgvector-java)
 JavaScript, TypeScript | [pgvector-node](https://github.com/pgvector/pgvector-node)
 Julia | [pgvector-julia](https://github.com/pgvector/pgvector-julia)
+Lisp | [pgvector-lisp](https://github.com/pgvector/pgvector-lisp)
 Lua | [pgvector-lua](https://github.com/pgvector/pgvector-lua)
 Nim | [pgvector-nim](https://github.com/pgvector/pgvector-nim)
+OCaml | [pgvector-ocaml](https://github.com/pgvector/pgvector-ocaml)
 Perl | [pgvector-perl](https://github.com/pgvector/pgvector-perl)
 PHP | [pgvector-php](https://github.com/pgvector/pgvector-php)
 Python | [pgvector-python](https://github.com/pgvector/pgvector-python)
@@ -460,6 +462,14 @@ and query with:
 
 ```sql
 SELECT * FROM items ORDER BY embedding::vector(3) <-> '[3,1,2]' LIMIT 5;
+```
+
+#### Do indexes need to fit into memory?
+
+No, but like other index types, you’ll likely see better performance if they do. You can get the size of an index with:
+
+```sql
+SELECT pg_size_pretty(pg_relation_size('index_name'));
 ```
 
 ## Troubleshooting
